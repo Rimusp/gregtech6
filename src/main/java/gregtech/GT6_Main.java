@@ -50,7 +50,6 @@ import gregapi.util.UT;
 import gregtech.blocks.fluids.BlockOcean;
 import gregtech.blocks.fluids.BlockRiver;
 import gregtech.blocks.fluids.BlockSwamp;
-import gregtech.compat.*;
 import gregtech.entities.projectiles.EntityArrow_Material;
 import gregtech.entities.projectiles.EntityArrow_Potion;
 import gregtech.items.tools.early.GT_Tool_Scoop;
@@ -183,16 +182,11 @@ public class GT6_Main extends Abstract_Mod {
 				new Loader_BlockResistance(),
 				new Loader_Fuels(),
 				new Loader_Loot(),
-				
-				new Loader_Recipes_Furnace(), // has to be before everything else!
-				new Loader_Recipes_Woods(), // has to be before Vanilla!
-				new Loader_Recipes_Vanilla(), // has to be after Woods!
+
 				new Loader_Recipes_Temporary(),
 				new Loader_Recipes_Chem(),
 				new Loader_Recipes_Crops(),
 				new Loader_Recipes_Potions(),
-				new Loader_Recipes_Food(),
-				new Loader_Recipes_Ores(),
 				new Loader_Recipes_Alloys(),
 				new Loader_Recipes_Other(),
 				
@@ -204,68 +198,10 @@ public class GT6_Main extends Abstract_Mod {
 			for (Runnable tRunnable : tList) try {tRunnable.run();} catch(Throwable e) {e.printStackTrace(ERR);}
 		}};
 		
-		new Compat_Recipes_Ganys                (MD.GAPI          , this);
-		new Compat_Recipes_Chisel               (MD.CHSL          , this);
-		new Compat_Recipes_FunkyLocomotion      (MD.FUNK          , this);
-		new Compat_Recipes_BetterBeginnings     (MD.BB            , this);
-		new Compat_Recipes_IndustrialCraft      (MD.IC2           , this);
-		new Compat_Recipes_IndustrialCraft_Scrap(MD.IC2           , this);
-		new Compat_Recipes_BuildCraft           (MD.BC            , this);
-		new Compat_Recipes_Railcraft            (MD.RC            , this); // has to be before MFR!
-		new Compat_Recipes_ThermalExpansion     (MD.TE_FOUNDATION , this);
-		new Compat_Recipes_Forestry             (MD.FR            , this);
-		new Compat_Recipes_MagicBees            (MD.FRMB          , this);
-		new Compat_Recipes_Binnie               (MD.BINNIE        , this);
-		new Compat_Recipes_BetterRecords        (MD.BETTER_RECORDS, this);
-		new Compat_Recipes_BalkonsWeaponMod     (MD.BWM           , this);
-		new Compat_Recipes_OpenModularTurrets   (MD.OMT           , this);
-		new Compat_Recipes_TechGuns             (MD.TG            , this);
-		new Compat_Recipes_Atum                 (MD.ATUM          , this);
-		new Compat_Recipes_Tropicraft           (MD.TROPIC        , this);
-		new Compat_Recipes_CandyCraft           (MD.CANDY         , this);
-		new Compat_Recipes_JABBA                (MD.JABBA         , this);
-		new Compat_Recipes_Factorization        (MD.FZ            , this);
-		new Compat_Recipes_Steamcraft2          (MD.SC2           , this);
-		new Compat_Recipes_MineFactoryReloaded  (MD.MFR           , this); // Has to be after RC!
-		new Compat_Recipes_AppliedEnergistics   (MD.AE            , this);
-		new Compat_Recipes_Bluepower            (MD.BP            , this);
-		new Compat_Recipes_ProjectRed           (MD.PR            , this);
-		new Compat_Recipes_ProjectE             (MD.PE            , this);
-		new Compat_Recipes_OpenComputers        (MD.OC            , this);
-		new Compat_Recipes_GrowthCraft          (MD.GrC           , this);
-		new Compat_Recipes_HarvestCraft         (MD.HaC           , this);
-		new Compat_Recipes_SaltyMod             (MD.Salt          , this);
-		new Compat_Recipes_MoCreatures          (MD.MoCr          , this);
-		new Compat_Recipes_Lycanites            (MD.LycM          , this);
-		new Compat_Recipes_Erebus               (MD.ERE           , this);
-		new Compat_Recipes_Betweenlands         (MD.BTL           , this);
-		new Compat_Recipes_TwilightForest       (MD.TF            , this);
-		new Compat_Recipes_Enviromine           (MD.ENVM          , this);
-		new Compat_Recipes_ExtraBiomesXL        (MD.EBXL          , this);
-		new Compat_Recipes_BiomesOPlenty        (MD.BoP           , this);
-		new Compat_Recipes_Highlands            (MD.HiL           , this);
-		new Compat_Recipes_Mariculture          (MD.MaCu          , this);
-		new Compat_Recipes_ImmersiveEngineering (MD.IE            , this);
-		new Compat_Recipes_HBM                  (MD.HBM           , this);
-		new Compat_Recipes_Reika                (MD.DRGN          , this);
-		new Compat_Recipes_Voltz                (MD.VOLTZ         , this);
-		new Compat_Recipes_Mekanism             (MD.Mek           , this);
-		new Compat_Recipes_GalactiCraft         (MD.GC            , this);
-		new Compat_Recipes_Mystcraft            (MD.MYST          , this);
-		new Compat_Recipes_Witchery             (MD.WTCH          , this);
-		new Compat_Recipes_Thaumcraft           (MD.TC            , this);
-		new Compat_Recipes_ForbiddenMagic       (MD.TCFM          , this);
-		new Compat_Recipes_ArsMagica            (MD.ARS           , this);
-		new Compat_Recipes_Botania              (MD.BOTA          , this);
-		new Compat_Recipes_Aether               (MD.AETHER        , this);
-		new Compat_Recipes_RandomThings         (MD.RT            , this);
-		new Compat_Recipes_ActuallyAdditions    (MD.AA            , this);
-		new Compat_Recipes_ExtraUtilities       (MD.ExU           , this);
-		new Compat_Recipes_WRCBE                (MD.WR_CBE_C      , this);
+
 		
 		new CompatMods(MD.GT, this) {@Override public void onPostLoad(FMLPostInitializationEvent aInitEvent) {
 			ArrayListNoNulls<Runnable> tList = new ArrayListNoNulls<>(F,
-				new Loader_Recipes_Replace(),
 				new Loader_Recipes_Foreign(),
 				new Loader_Recipes_Decomp(),
 				new Loader_Recipes_Handlers()
